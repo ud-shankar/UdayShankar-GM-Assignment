@@ -1,27 +1,25 @@
 import { test } from "@playwright/test";
-import { Widgets } from "../../page-objects/widgets";
-import { HomePage } from "../../page-objects/home_page";
+import { PageObjects } from "../object";
 
-let widgets_object, home_object;
+let pageObject;
 
 test.beforeEach(async ({page}) => {
-    widgets_object = new Widgets(page);
-    home_object = new HomePage(page);
-    home_object.navigateToHomePage();
-    home_object.selectMenuFromHomePage('Widgets')
+    pageObject = new PageObjects(page);
+    pageObject.homePage().navigateToHomePage();
+    pageObject.homePage().selectMenuFromHomePage('Widgets');
 });
 
 test('TC04 - Verify the progress bar', async({page}) =>{
-    await page.getByText('Progress Bar').click();
-    await widgets_object.VerifyProgressBarState('Start');
-    await widgets_object.VerifyProgressBarState('In Progress');
-    await widgets_object.VerifyProgressBarState('Finished');
+    await pageObject.homePage().selectSectionFromMenu('Progress Bar');
+    await pageObject.widgets().VerifyProgressBarState('Start');
+    await pageObject.widgets().VerifyProgressBarState('In Progress');
+    await pageObject.widgets().VerifyProgressBarState('Finished');
 });
 
 test('TC05 - Verify the tooltip', async({page}) =>{
     await page.getByText('Tool Tips').click();
-    await widgets_object.verifyToolTip('TextBox');
-    await widgets_object.verifyToolTip('Button')
+    await pageObject.widgets().verifyToolTip('TextBox');
+    await pageObject.widgets().verifyToolTip('Button')
 });
 
 

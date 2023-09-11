@@ -1,5 +1,4 @@
 import { Page, expect } from "@playwright/test";
-import { faker } from '@faker-js/faker';
 
 export class Elements {
 
@@ -29,17 +28,8 @@ export class Elements {
         const naturalWidth = await image[0].getProperty('naturalWidth');
         expect (Number(naturalWidth)).toBe(0);
     }
-    
-    focusAndType(locator:string, input:string) {
-        this.page.locator(locator).waitFor({state:"attached", timeout:20000});
-        this.page.locator(locator).type(input);
-    }
 
-    clearAndFill(locator:string, input:string) {
-        this.page.locator(locator).waitFor({state:"attached", timeout:20000});
-        this.page.locator(locator).fill(input);
-    }
-
+    //Get the row number from the table for the given email id
     async getTableRowNumber (email:string): Promise<Number> {
         let index = 0;
         const elements = this.page.locator('(//div[@role="row"])/div[4]');
@@ -52,6 +42,7 @@ export class Elements {
         return index;
     }
 
+    //Assert Names in the table for the given email id
     async assertNamesInTableView(firstName:string, lastName:string, email:string) {
         let row = await this.getTableRowNumber(email);
         let tableFirstName = await this.page.locator(`(//div[@role="row"])[${row}]/div[1]`).innerText();
@@ -60,10 +51,13 @@ export class Elements {
         expect(tablelastName).toBe(lastName);
     }
 
+    //Click the submit button in registration form
     async clickFormSubmitButton() {
-        await this.page.click(this.formSubmit);
+        await this.page.
+        click(this.formSubmit);
     }
 
+    //Click on edit icon from the table for the user with matching email id
     async clickOnEditIcon(email:string) {
         let row = await this.getTableRowNumber(email);
         await this.page.click(`//div[@class="action-buttons"]/span[@id="edit-record-${Number(row)-1}"]`);

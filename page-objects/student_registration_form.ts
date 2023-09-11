@@ -1,4 +1,3 @@
-import { faker } from "@faker-js/faker";
 import { Page, expect } from "@playwright/test";
 
 export class StudentRegistrationForm {

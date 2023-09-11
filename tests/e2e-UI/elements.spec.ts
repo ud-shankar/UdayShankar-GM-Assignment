@@ -1,54 +1,49 @@
 import { test } from "@playwright/test";
-import { faker } from "@faker-js/faker";
-import { HomePage } from "../../page-objects/home_page";
-import { Elements } from "../../page-objects/elements";
-import { keyword } from "../../common_lib/keywords";
+import { PageObjects } from "../object";
 
-let element_object, home_object, keyword_object;
+let pageObject;
 
 test.beforeEach(async ({page}) => {
-    element_object = new Elements(page);
-    home_object = new HomePage(page);
-    keyword_object = new keyword(page);
-    home_object.navigateToHomePage();
-    home_object.selectMenuFromHomePage('Elements');
+    pageObject = new PageObjects(page);
+    pageObject.homePage().navigateToHomePage();
+    pageObject.homePage().selectMenuFromHomePage('Elements');
 });
 
 test('TC01- Scenario A - Verify user can enter new data into the table', async({page}) =>{
-    await page.getByText('Web Tables').click();
-    let email = faker.internet.email();
-    await page.click(element_object.newButton);
+    await pageObject.homePage().selectSectionFromMenu('Web Tables');
+    await page.click(pageObject.elements().newButton);
     await page.waitForTimeout(5000);
-    await keyword_object.focusAndType(element_object.firstNameInput, "Uday");
-    await keyword_object.focusAndType(element_object.lastNameInput, "Shankar");
-    await keyword_object.focusAndType(element_object.departmentInput, faker.commerce.department());
+    await pageObject.keyword().focusAndType(pageObject.elements().firstNameInput, pageObject.elementData().inputName);
+    await page.waitForTimeout(3000);
+    await pageObject.keyword().focusAndType(pageObject.elements().lastNameInput, pageObject.elementData().inputLastName);
+    await pageObject.keyword().focusAndType(pageObject.elements().departmentInput, pageObject.elementData().inputDepartment);
     await page.waitForTimeout(5000);
-    await keyword_object.focusAndType(element_object.salaryInput, "4550");
+    await pageObject.keyword().focusAndType(pageObject.elements().salaryInput, pageObject.elementData().inputSalary);
     await page.waitForTimeout(5000);
-    await keyword_object.focusAndType(element_object.emailInput, email);
+    await pageObject.keyword().focusAndType(pageObject.elements().emailInput, pageObject.elementData().inputEmail);
     await page.waitForTimeout(2000);
-    await keyword_object.focusAndType(element_object.ageInput, "28");
-    await element_object.clickFormSubmitButton();
+    await pageObject.keyword().focusAndType(pageObject.elements().ageInput, pageObject.elementData().inputAge);
+    await pageObject.elements().clickFormSubmitButton();
     //Assert form successfully created
-    await element_object.assertNamesInTableView('Uday', 'Shankar', email);
+    await pageObject.elements().assertNamesInTableView(pageObject.elementData().inputName, pageObject.elementData().inputLastName, pageObject.elementData().inputEmail);
 });
 
 test('TC01- Scenario B - Verify user can edit the row in a table', async({page}) =>{
-    await page.getByText('Web Tables').click();
+    await pageObject.homePage().selectSectionFromMenu('Web Tables');
     //Assert names before edit
-    await element_object.assertNamesInTableView('Alden', 'Cantrell', 'alden@example.com');
-    await element_object.clickOnEditIcon('alden@example.com')
+    await pageObject.elements().assertNamesInTableView(pageObject.elementData().userNameToEdit, pageObject.elementData().userLastNameToEdit, pageObject.elementData().userEmailToEdit);
+    await pageObject.elements().clickOnEditIcon(pageObject.elementData().userEmailToEdit)
     await page.waitForTimeout(5000);
-    await keyword_object.clearAndFill(element_object.firstNameInput, "Gerimedica");
+    await pageObject.keyword().clearAndFill(pageObject.elements().firstNameInput, pageObject.elementData().editedName);
     await page.waitForTimeout(5000);
-    await keyword_object.clearAndFill(element_object.lastNameInput, "BV");
-    await element_object.clickFormSubmitButton();
+    await pageObject.keyword().clearAndFill(pageObject.elements().lastNameInput, pageObject.elementData().editedLastName);
+    await pageObject.elements().clickFormSubmitButton();
     //Assert names are successfully edited
-    await element_object.assertNamesInTableView('Gerimedica', 'BV', 'alden@example.com');
+    await pageObject.elements().assertNamesInTableView(pageObject.elementData().editedName, pageObject.elementData().editedLastName, pageObject.elementData().userEmailToEdit);
 });
 
 test('TC02 - Verify broken image', async({page}) =>{
-    await page.getByText('Broken Links - Images').click();
-    await element_object.VerifyImageState(element_object.brImage);
+    await pageObject.homePage().selectSectionFromMenu('Broken Links - Images');
+    await pageObject.elements().VerifyImageState(pageObject.elements().brImage);
 });
 

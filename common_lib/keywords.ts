@@ -10,14 +10,6 @@ export class keyword {
         this.page = page;
     }
 
-    async switchToWindowAndAssertTitle(title:string, locator:string) {
-        const [newPage] = await Promise.all([
-            this.page.waitForEvent("popup"),
-            this.page.click(locator)]);
-        await newPage.waitForLoadState();
-        expect (await newPage.title()).toMatch(title);
-    }
-
     focusAndType(locator:string, input:string) {
         this.page.locator(locator).waitFor({state:"attached", timeout:20000});
         this.page.locator(locator).type(input);

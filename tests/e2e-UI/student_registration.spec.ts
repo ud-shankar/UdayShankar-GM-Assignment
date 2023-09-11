@@ -1,25 +1,15 @@
 import { test } from "@playwright/test";
-import { HomePage } from "../../page-objects/home_page";
-import { StudentRegistrationForm } from "../../page-objects/student_registration_form";
+import { PageObjects } from "../object";
 
-let sr_object, hp_object;
-
-test.use({
-    launchOptions: {
-        args: ['--start-maximized']
-    }
-});
+let pageObject;
 
 test.beforeEach(async ({page}) => {
-    sr_object = new StudentRegistrationForm(page);
-    hp_object = new HomePage(page);
-    hp_object.navigateToHomePage();
-    hp_object.selectMenuFromHomePage('Forms')
-    await page.getByText('Practice Form').click();
+    pageObject = new PageObjects(page);
+    pageObject.homePage().navigateToHomePage();
+    pageObject.homePage().selectMenuFromHomePage('Forms');
 });
 
 test('TC03 - Verify user can submit the form', async() =>{
-    await sr_object.fillFormDetails();
+    await pageObject.homePage().selectSectionFromMenu('Practice Form');
+    await pageObject.studentRegistration().fillFormDetails();
 });
-
-
