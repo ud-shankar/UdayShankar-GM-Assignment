@@ -1,0 +1,17 @@
+{
+  "name": "UdayShankar-GM-Assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Test.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
+    "@playwright/test": "^1.37.1"
+  },
+  "dependencies": {
+    "@fast-csv/parse": "^4.3.6"
+  }
+}
