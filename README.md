@@ -1,28 +1,10 @@
 # UdayShankar-GM-Assignment
 ## Assignment for automating UI and API Tests using PlayWright - Typescript
 
-- Playwright is used to perform browser automation for both front end and backend automation.
-- Typescript is used as the scripting language for this framework.
-- The Test Automation Framework is created for automating the scenarios in DemoQA site for UI and the accounts, book store APIs available in DemoQA swagger docs. 
-- The framework is designed based on Page Object model with code modularity and maximum reuseability.
-- The reporting feature of playwright handles generation of reports with each run and configured to capture screenshots only for failed test cases.
-- Browsers are run in headless mode as this is will come in handy while integrating the test in CI/CD pipelines.
-- The framework is designed to run on all browsers supported by playwright.
-- The global configuration required on the test are done in playwright.config.ts files including the baseurl, browser settings, reporting etc.
-- The page level test are independent and can be run in parallel to attain faster results. 
+## ❗️ Links & Important Resources
 
-### Folder Structure
-
-The Test Automation Suite is having below folders.
-
-- **common-lib** : The common-lib folder houses all the common functions and common steps which are used across the project. It maily contains two files one is keywords.ts that contains all the common function useful for UI automation and api_lib.ts that contains helper methods for API automation.
-- **page-objects** : This folder has been used to save the locators and methods for each page in case of front end automation. Each file corresponds to each page in the UI and contains classes which groups the locators and necessary methods corresponding to that page which are used in test cases. Emphasis has been kept to reuse the codes wherever possible using file level methods.
-- **test-data** : All the test data files required for both UI and API auotmation can be stored here. The test data is stored at page level in case of UI.
-- **tests** : The test data folder has two parts:
-- ***e2e-UI***: This folder consists of all the UI test files based on each module.
-- ***e2e-API***: This folder consists of all the API test files based on each module.
-
-The object.ts file handles creation of all objects for different classes used in the page-object foder. This helps in avoiding importing multiple classes and creation of multiple objects in test files.
+- **[Oficial Documentation - Playwright](https://playwright.dev/docs/intro)**
+- **[Framework Flow Chart and Documentation](https://docs.google.com/document/d/18gOqv2nCT2B3tSmxk44FpN8BZp2z1YF5xfDnkhEjg6k/edit?usp=sharing)**
 
 ## Resources Used
 - **Playwright**
@@ -55,10 +37,3 @@ We can also make use of the test explorer on using VS Code to run individual tes
 
 To open the html report execute the following command:
 $ npx playwright show-report
-
-## Enchancements that can be considered for the framework (Future Scope or Roadmap in framework architecture)
-
-1. Add input files like csv or excel/ json files to fetch more test data that will bring in a more efficient data drive approach to the framework. 
-2. Add more helper files/ methods that can be used across the framework to improve resuablity.
-3. Integrate with Ci/Cd pipeline to schedule jobs and trigger the suite periodically. 
-4. The framework can be integrated with third party tools like Jira or test rail etc to run cases specific to the test cycle or test suites and save the reports.
