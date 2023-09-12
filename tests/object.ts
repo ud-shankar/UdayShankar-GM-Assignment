@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { ElementsData } from "../test-data/elements_data";
 import { HomePage } from "../page-objects/home_page";
-import { keyword } from "../common_lib/keywords";
+import { keyword } from "../common-lib/keywords";
 import { Elements } from "../page-objects/elements";
 import { Interaction } from "../page-objects/interactions";
 import { Widgets } from "../page-objects/widgets";

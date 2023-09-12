@@ -18,7 +18,13 @@ export class Widgets {
     button = '[id="toolTipButton"]'
     toolTip = '[class="tooltip-inner"]';
 
-    //To verify different states of the progress bar before and after clicking start button
+    /*
+    Description: To verify different states of the progress bar before and after clicking start button
+    Params: state:string - To know the state of the progress bar to perform necessary action and assetions.
+    Author: Uday Shankar
+    Created On: 11th Sept 2023
+    Updated On: 11th Sept 2023
+    */
     async VerifyProgressBarState(state:string) {
         await this.page.waitForLoadState('domcontentloaded');
         
@@ -34,7 +40,13 @@ export class Widgets {
         }
     }
 
-    //To hover over the elements and assert tootltip message
+    /*
+    Description: To hover over the elements and assert tootltip message
+    Params: field:string - Used as a flag to identify if the field that is being hovered over is a textbox or button or any other element. 
+    Author: Uday Shankar
+    Created On: 11th Sept 2023
+    Updated On: 11th Sept 2023
+    */
     async verifyToolTip(field:string) {
         
         if (field == 'TextBox') {

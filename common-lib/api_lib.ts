@@ -2,6 +2,15 @@ import { expect, test } from "@playwright/test";
 
 export class APILibs {
     
+    /*
+    Description: To do the basic assertions based on the response status code 
+    Params: response:any - Response of the request sent
+    statuscode:number - Status code expeted by the user for given request
+    text:string - Message epected by the user to be asserted fom response body
+    Author: Uday Shankar
+    Created On: 11th Sept 2023
+    Updated On: 11th Sept 2023
+    */
     async basicResponseAssertions(response, statusCode, text?) {
         let acc_data;
         if (statusCode != 204){

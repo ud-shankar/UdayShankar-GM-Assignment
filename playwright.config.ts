@@ -10,7 +10,7 @@ export default defineConfig({
   reporter: 'html',
   use: {
     baseURL: 'https://demoqa.com',
-    headless:false,
+    headless:true,
     screenshot: 'only-on-failure'
   },
 

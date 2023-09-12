@@ -34,9 +34,9 @@ test('TC01- Scenario B - Verify user can edit the row in a table', async({page})
     await pageObject.elements().assertNamesInTableView(pageObject.elementData().userNameToEdit, pageObject.elementData().userLastNameToEdit, pageObject.elementData().userEmailToEdit);
     await pageObject.elements().clickOnEditIcon(pageObject.elementData().userEmailToEdit)
     await page.waitForTimeout(5000);
-    await pageObject.keyword().clearAndFill(pageObject.elements().firstNameInput, pageObject.elementData().editedName);
+    await pageObject.keyword().focusAndFill(pageObject.elements().firstNameInput, pageObject.elementData().editedName);
     await page.waitForTimeout(5000);
-    await pageObject.keyword().clearAndFill(pageObject.elements().lastNameInput, pageObject.elementData().editedLastName);
+    await pageObject.keyword().focusAndFill(pageObject.elements().lastNameInput, pageObject.elementData().editedLastName);
     await pageObject.elements().clickFormSubmitButton();
     //Assert names are successfully edited
     await pageObject.elements().assertNamesInTableView(pageObject.elementData().editedName, pageObject.elementData().editedLastName, pageObject.elementData().userEmailToEdit);

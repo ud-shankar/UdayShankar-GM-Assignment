@@ -13,7 +13,13 @@ export class Interaction {
     dropBoxElement = '//div[@id="droppable"]';
     dropBoxElementText = '//div[@id="simpleDropContainer"]//div[@id="droppable"]/p'
 
-    //To drag and drop element and verify state change by asserting the inner text
+    /*
+    Description: To drag and drop element and verify state change by asserting the inner text
+    Params: Nil
+    Author: Uday Shankar
+    Created On: 11th Sept 2023
+    Updated On: 11th Sept 2023
+    */
     async verifyDragAndDrop() {
         await this.page.dragAndDrop(this.dropElement, this.dropBoxElement);
         expect(await this.page.locator(this.dropBoxElementText).innerText()).toBe('Dropped!');
