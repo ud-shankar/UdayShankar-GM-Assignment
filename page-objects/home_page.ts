@@ -16,8 +16,8 @@ export class HomePage {
     Updated On: 11th Sept 2023
     */
     async navigateToHomePage() {
-        await this.page.goto('/');
-        (await (this.page).title()).match('DEMOQA');
+        await this.page.goto(String(process.env.product_url));
+        (await (this.page).title()).match(String(process.env.home_page_title));
     }
 
     /*

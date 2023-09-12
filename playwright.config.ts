@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+require('dotenv').config();
 
 export default defineConfig({
   testDir: './tests',
@@ -10,7 +11,6 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   use: {
-    baseURL: 'https://demoqa.com',
     headless:true,
     screenshot: 'only-on-failure'
   },
@@ -24,15 +24,6 @@ export default defineConfig({
           slowMo:1000
         }
       },
-    },
-
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'],
-        launchOptions: {
-          slowMo:1000 
-        }
-      },
-    },
-  ],
+    }
+  ]
 });
