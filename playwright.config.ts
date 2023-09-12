@@ -24,15 +24,6 @@ export default defineConfig({
           slowMo:1000
         }
       },
-    },
-
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'],
-        launchOptions: {
-          slowMo:1000 
-        }
-      },
-    },
-  ],
+    }
+  ]
 });
