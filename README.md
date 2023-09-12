@@ -24,16 +24,16 @@
 
 To Run playwright from terminal:
 
-1. $ npx playwright test -g <test title> 
-To run a set of test cases that has a specific title eg: 'TC02 - Verify broken image'
+1. $ npx playwright test -g 'test title'
+- To run a set of test cases that has a specific title eg: 'TC02 - Verify broken image'
 
-2. $ npx playwright test <testfilename>
-To run all test in a single test file
+2. $ npx playwright test 'testfilename'
+- To run all test in a single test file
 
 3. $ npx playwright test
-To run all the test files/scenarios in the project
+- To run all the test files/scenarios in the project
 
-We can also make use of the test explorer on using VS Code to run individual test or a group of tests. 
+4. We can also make use of the test explorer on using VS Code to run individual test or a group of tests. 
 
-To open the html report execute the following command:
+- To open the html report execute the following command:
 $ npx playwright show-report
