@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import { APILibs } from "../../common_lib/api_lib";
+import { APILibs } from "../../common-lib/api_lib";
 import { APITestData } from "../../test-data/api_test_data";
 
 const apiLibs = new APILibs();

@@ -6,6 +6,7 @@ import { Elements } from "../page-objects/elements";
 import { Interaction } from "../page-objects/interactions";
 import { Widgets } from "../page-objects/widgets";
 import { StudentRegistrationForm } from "../page-objects/student_registration_form";
+import { StudentRegistrationData } from "../test-data/student_registration_data";
 
 export class PageObjects {
 
@@ -15,11 +16,16 @@ export class PageObjects {
     keyword_object:keyword;
     element_object:Elements;
     interaction_object:Interaction;
+    student_data_object:StudentRegistrationData;
     widgets_object:Widgets;
     student_registration_object:StudentRegistrationForm;
 
     constructor(page:Page) {
         this.page = page;
+    }
+
+    studentRegistrationDataSet():StudentRegistrationData {
+        return this.student_data_object = new StudentRegistrationData();
     }
 
     studentRegistration():StudentRegistrationForm {

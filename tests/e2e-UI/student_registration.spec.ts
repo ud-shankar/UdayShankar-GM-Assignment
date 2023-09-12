@@ -11,5 +11,6 @@ test.beforeEach(async ({page}) => {
 
 test('TC03 - Verify user can submit the form', async() =>{
     await pageObject.homePage().selectSectionFromMenu('Practice Form');
-    await pageObject.studentRegistration().fillFormDetails();
+    await pageObject.studentRegistration().fillFormDetails(pageObject.studentRegistrationDataSet().form_registration_data);
+    await pageObject.studentRegistration().assertFormSubmittedSuccessfully();
 });
